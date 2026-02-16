@@ -1,4 +1,7 @@
 package br.com.med.voll.api.repository;
 
-public interface DoctorRepository {
+import br.com.med.voll.api.doctor.Doctor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DoctorRepository extends JpaRepository<Doctor,Long> {
 }

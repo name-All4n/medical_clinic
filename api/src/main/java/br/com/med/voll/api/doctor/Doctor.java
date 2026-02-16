@@ -1,15 +1,15 @@
 package br.com.med.voll.api.doctor;
 
-import br.com.med.voll.api.address.Adress;
-import br.com.med.voll.api.address.DataAddress;
+import br.com.med.voll.api.address.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name="medicos")
+@Table(name="doctors")
 @Entity
 public class Doctor {
     @Id
@@ -21,5 +21,13 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
     @Embedded
-    private Adress address;
+    private Address address;
+
+    public Doctor(DataDoctorRegister data) {
+        this.name = data.name();
+        this.email = data.email();
+        this.crm = data.crm();
+        this.specialty = data.specialty();
+        this.address = new Address(data.address());
+    }
 }
