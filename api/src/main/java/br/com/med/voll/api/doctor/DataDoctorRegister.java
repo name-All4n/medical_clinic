@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Pattern;
 
 public record DataDoctorRegister(@NotBlank String name,
                                  @NotBlank @Email String email,
+                                 @NotBlank String telephone,
                                  @NotBlank @Pattern(
                                          regexp = "\\d{4,6}")String crm,
                                  @NotNull Specialty specialty,
