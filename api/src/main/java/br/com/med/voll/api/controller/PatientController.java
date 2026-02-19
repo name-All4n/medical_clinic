@@ -4,6 +4,7 @@ package br.com.med.voll.api.controller;
 import br.com.med.voll.api.doctor.DataDoctorRegister;
 import br.com.med.voll.api.patient.DataListiningPatient;
 import br.com.med.voll.api.patient.DataPatientRegister;
+import br.com.med.voll.api.patient.DataUpdatePatient;
 import br.com.med.voll.api.patient.Patient;
 import br.com.med.voll.api.repository.PatientRepository;
 import jakarta.transaction.Transactional;
@@ -30,6 +31,20 @@ public class PatientController {
     @GetMapping
     public Page<DataListiningPatient> list(@PageableDefault (page = 0, size = 10,
             sort = {"nome"}) Pageable pagination){
-        return repository.findAll(pagination).map(DataListiningPatient::new);
+        return repository.findAllByActiveTrue(pagination).map(DataListiningPatient::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid DataUpdatePatient data){
+        var patient = repository.getReferenceById(data.id());
+        patient.updateInformations(data);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id){
+        var  patient = repository.getReferenceById(id);
+        patient.delete();
     }
 }
