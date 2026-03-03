@@ -18,12 +18,14 @@ import org.springframework.stereotype.Service;
 public class SecurityConfigutarions {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .build();
+        return
+                http.csrf(csrf -> csrf.disable())
+                        .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .authorizeHttpRequests(req -> {
+                            req.requestMatchers("/login").permitAll();
+                            req.anyRequest().authenticated();
+                        })
+                        .build();
     }
 
     @Bean
