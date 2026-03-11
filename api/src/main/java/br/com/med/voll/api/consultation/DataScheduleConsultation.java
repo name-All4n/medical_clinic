@@ -1,5 +1,6 @@
 package br.com.med.voll.api.consultation;
 
+import br.com.med.voll.api.doctor.Specialty;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,5 +11,6 @@ public record DataScheduleConsultation(Long idDoctor,
                                        Long idPatient,
                                        @NotNull
                                        @Future
-                                       LocalDateTime consultationDate) {
+                                       LocalDateTime date,
+                                       Specialty specialty) {
 }
