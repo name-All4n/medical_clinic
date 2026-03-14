@@ -20,6 +20,11 @@ public class ErrorHandler {
         return ResponseEntity.badRequest().body(errors.stream().map(DataErroValidation::new).toList());
     }
 
+    @ExceptionHandler(ValidationExeption.class)
+    public ResponseEntity businessRules(ValidationExeption ex){
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
     //DTO para o método handlerError400
     private record DataErroValidation(String fild, String message){
         public DataErroValidation(FieldError erro){

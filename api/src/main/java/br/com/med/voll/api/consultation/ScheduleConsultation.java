@@ -28,7 +28,7 @@ public class ScheduleConsultation {
 //    @Autowired
 //    private List<ConsultationCancellationValidation> cancellationValidators;
 
-    public void schedule(DataScheduleConsultation data) {
+    public DataDetailsConsultation schedule(DataScheduleConsultation data) {
         if (!patientRepository.existsById(data.idPatient())) {
             throw new ValidationExeption("The patient ID does not exist.");
         }
@@ -40,8 +40,13 @@ public class ScheduleConsultation {
 
         var patient = patientRepository.getReferenceById(data.idPatient());
         var doctor = chooseDoctor(data);
+        if (doctor == null) {
+            throw new ValidationExeption("There is no doctor available on this date.");
+        }
         var consultation = new Consultation(null, doctor, patient, data.date());
         consultationRepository.save(consultation);
+
+        return new  DataDetailsConsultation(consultation);
     }
 
     private Doctor chooseDoctor(DataScheduleConsultation data) {
