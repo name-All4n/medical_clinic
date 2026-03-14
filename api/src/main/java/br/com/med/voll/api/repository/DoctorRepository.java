@@ -15,6 +15,9 @@ import java.util.Optional;
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
     Page<Doctor> findAllByActiveTrue(Pageable pagination);
 
-    @Query("select m from Doctor m where m.active = true and m.specialty = :specialty and m.id not in(select c.doctor.id from Consultation c where c.date = :date) order by rand() limit 1")
+    @Query("select d from Doctor d where d.active = true and d.specialty = :specialty and d.id not in(select c.doctor.id from Consultation c where c.date = :date) order by rand() limit 1")
     Doctor chooseRandomDoctor(Specialty specialty, LocalDateTime date);
+
+    @Query("select d.active from Doctor d where d.id = :id")
+    Boolean findActiveById(Long id);
 }
