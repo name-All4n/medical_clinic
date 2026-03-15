@@ -16,7 +16,7 @@ public class AnotherConsultationOnTheSameDay implements  ValidationScheduleConsu
     public void validation(DataScheduleConsultation data) {
         var firstTime = data.date().withHour(7);
         var lastTime = data.date().withHour(18);
-        var AnotherConsultationOnTheSameDay = consultationRepository.existByPatientIdAndDateBetween(data.idPatient(), firstTime, lastTime);
+        var AnotherConsultationOnTheSameDay = consultationRepository.existsByPatientIdAndDateBetween(data.idPatient(), firstTime, lastTime);
         if (AnotherConsultationOnTheSameDay) {
             throw new ValidationException("patient already has a consultation on that day");
         }

@@ -10,5 +10,5 @@ public interface ConsultationRepository  extends JpaRepository<Consultation, Int
 
     boolean existsByDoctorIdAndDate(Long doctorId, LocalDateTime date);
 
-    boolean existByPatientIdAndDateBetween(@NotNull Long id, LocalDateTime firstTime, LocalDateTime lastTime);
+    boolean existsByPatientIdAndDateBetween(Long PatientId, LocalDateTime firstTime, LocalDateTime lastTime);
 }

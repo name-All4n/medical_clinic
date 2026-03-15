@@ -4,6 +4,7 @@ package br.com.med.voll.api.controller;
 import br.com.med.voll.api.doctor.*;
 import br.com.med.voll.api.patient.DataPatientRegister;
 import br.com.med.voll.api.repository.DoctorRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class DoctorController {
 
     @Autowired
