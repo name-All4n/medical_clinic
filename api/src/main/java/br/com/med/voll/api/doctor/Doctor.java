@@ -37,13 +37,13 @@ public class Doctor {
     }
 
     public void uptadeInformations(DataUpdateDoctors data) {
-        if (this.name != null) {
+        if (data.name() != null) {
             this.name = data.name();
         }
-        if (this.telephone != null) {
+        if (data.telephone() != null) {
             this.telephone = data.telephone();
         }
-        if (this.address != null) {
+        if (data.address() != null) {
             this.address.updateInformations(data.address());
         }
 

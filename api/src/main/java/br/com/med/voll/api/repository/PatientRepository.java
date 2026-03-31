@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PatientRepository extends JpaRepository<Patient,Long> {
     Page<Patient> findAllByActiveTrue(Pageable pagination);
 
-    boolean findActiveById(@NotNull Long id);
+    Boolean findActiveById(@NotNull Long id);
 }

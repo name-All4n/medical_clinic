@@ -14,7 +14,7 @@ public class ClinicOperationHours implements ValidationScheduleConsultation {
         var dataConsultation = data.date();
         var sunDay = dataConsultation.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var beforeTheClinicOpened = dataConsultation.getHour() < 7;
-        var afterTheClinicCloses = dataConsultation.getHour() > 18;
+        var afterTheClinicCloses = dataConsultation.getHour() >= 18;
         if (sunDay || beforeTheClinicOpened || afterTheClinicCloses) {
             throw new ValidationExeption("consultation outside of the clinic operation hours");
         }

@@ -31,7 +31,7 @@ public class Address {
     }
 
     public void updateInformations(DataAddress address) {
-        if (street != null) {
+        if (address.street() != null) {
             this.street = address.street();
         }
         if (neighborhood != null) {

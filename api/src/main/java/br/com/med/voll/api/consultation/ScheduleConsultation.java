@@ -24,10 +24,6 @@ public class ScheduleConsultation {
     @Autowired
     private List<ValidationScheduleConsultation> validators;
 
-//    estanciação do connjunto de classes de validação
-//    @Autowired
-//    private List<ConsultationCancellationValidation> cancellationValidators;
-
     public DataDetailsConsultation schedule(DataScheduleConsultation data) {
         if (!patientRepository.existsById(data.idPatient())) {
             throw new ValidationExeption("The patient ID does not exist.");
