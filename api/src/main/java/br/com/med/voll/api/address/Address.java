@@ -34,22 +34,22 @@ public class Address {
         if (address.street() != null) {
             this.street = address.street();
         }
-        if (neighborhood != null) {
+        if (address.neighborhood() != null) {
             this.neighborhood = address.neighborhood();
         }
-        if (cep != null) {
+        if (address.cep() != null) {
             this.cep = address.cep();
         }
-        if (city != null) {
+        if (address.city() != null) {
             this.city = address.city();
         }
-        if (uf != null) {
+        if (address.uf() != null) {
             this.uf = address.uf();
         }
-        if (complement != null) {
+        if (address.complement() != null) {
             this.complement = address.complement();
         }
-        if (number != null) {
+        if (address.number() != null) {
             this.number = address.number();
         }
     }
